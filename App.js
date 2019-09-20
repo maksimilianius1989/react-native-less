@@ -1,52 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Fragment} from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const restaurants = [
+    {name: "React Cafe", address: "123 Anywhere St"},
+    {name: "Fancy Restaurant", address: "799 Main St"},
+    {name: "Taco Place", address: "550 Maple Rd"}
+]
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>
-        Restaurant Review
-      </Text>
+    <View style={{
+        flex: 1
+    }}>
+        <Text style={{
+          padding: 40,
+          fontSize: 30,
+          textAlign: 'center',
+          color: '#0066CC',
+          fontWeight: '300'
+        }}>
+            Restaurant Review
+        </Text>
+
+        {
+            restaurants.map((place, index) => {
+                return (
+                    <View key={place.name} style={{
+                        flexDirection: 'row'
+                    }}>
+                        <View style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <Text>{index + 1}</Text>
+                        </View>
+
+                        <Text style={{
+                            flexDirection: 'column',
+                            flex: 8
+                        }}>
+                            <Text>{place.name}</Text>
+                            <Text style={{color: 'grey'}}>{place.address}</Text>
+                        </Text>
+
+                        <View style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <Text>Info</Text>
+                        </View>
+                    </View>
+                )
+            })
+        }
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        color: 'red',
-    },
-});
 
 export default App;
