@@ -5,10 +5,10 @@ import {
     StyleSheet,
     TextInput
 } from 'react-native';
-import HeaderStyle from './HeaderStyle'
+import Header from './Header'
 
 const restaurants = [
-    {name: "React Cafe", address: "232 Anywhere St"},
+    {name: "React Cafe", address: "111 Anywhere St"},
     {name: "Fancy Restaurant", address: "222 Main St"},
     {name: "Taco Place", address: "333 Maple Rd"}
 ]
@@ -19,11 +19,15 @@ class App extends Component {
     }
 
     render() {
+
+        console.log('--------------->', Header)
+
         return (
             <View style={{
                 flex: 1
             }}>
-                <Text style={HeaderStyle.header}>Restaurant Review</Text>
+
+                <Header/>
 
                 <TextInput
                     style={styles.input}
