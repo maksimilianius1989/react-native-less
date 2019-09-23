@@ -3,7 +3,9 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    TouchableOpacity,
+    TouchableHighlight,
+    TouchableWithoutFeedback
 } from 'react-native'
 
 export default class RestaurantRow extends Component {
@@ -39,18 +41,19 @@ export default class RestaurantRow extends Component {
                     </Text>
 
                     <View style={styles.edges}>
-                        <Button
-                            title="Info"
-                            color="#C93F0B"
-                            accessibilityLabel="Info"
+                        <TouchableHighlight
                             onPress={this.infoPressed}
-                        />
+                            style={styles.button}
+                            underlayColor='#5398DC'
+                        >
+                            <Text style={styles.buttonText}>Info</Text>
+                        </TouchableHighlight>
                     </View>
                 </View>
 
                 {
                     this.state.showInfo &&
-                    <View>
+                    <View style={styles.info}>
                         <Text>Restaurant Info</Text>
                     </View>
                 }
@@ -77,4 +80,27 @@ const styles = StyleSheet.create({
     addressText: {
         color: 'grey'
     },
+    button: {
+        borderWidth: 1,
+        borderColor: '#0066CC',
+        borderRadius: 14,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
+        backgroundColor: '#fff',
+        color: '#912B04',
+        fontSize: 12
+    },
+    buttonText: {
+        color: '#0066CC',
+        fontSize: 12
+    },
+    info: {
+        marginHorizontal: 40,
+        marginVertical: 10,
+        padding: 10,
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 4
+    }
 })
