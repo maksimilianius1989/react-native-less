@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {
     View,
-    Text,
     StyleSheet,
     TextInput,
-    ScrollView,
     FlatList
 } from 'react-native';
 import Header from 'components/Header'
