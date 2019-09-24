@@ -17,9 +17,10 @@ export default class RestaurantRow extends Component {
     }
 
     infoPressed = () => {
-        this.setState({
-            showInfo: !this.state.showInfo
-        })
+        // this.setState({
+        //     showInfo: !this.state.showInfo
+        // })
+        this.props.navigation.navigate('Info')
     }
 
     render() {
@@ -27,8 +28,6 @@ export default class RestaurantRow extends Component {
             place,
             index
         } = this.props
-        
-        console.log('--------------->', 'place', place)
 
         return (
             <View
