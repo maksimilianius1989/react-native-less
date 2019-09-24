@@ -3,11 +3,13 @@ import {
     View,
     StyleSheet,
     TextInput,
-    FlatList
+    FlatList,
+    Image
 } from 'react-native';
 import Header from 'components/Header'
 import RestaurantRow from 'components/RestaurantRow'
 import axios from 'axios'
+import PizzaImage from 'images/star.png'
 
 class App extends Component {
     state = {
@@ -26,6 +28,14 @@ class App extends Component {
                 flex: 1
             }}>
 
+                <View style={{
+                    alignItems: 'center',
+                    // width: 50,
+                    // height: 50,
+                    marginTop: 30
+                }}>
+                    <Image source={PizzaImage} />
+                </View>
                 <Header />
 
                 <TextInput
