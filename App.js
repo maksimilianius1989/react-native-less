@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        featch('http://localhost:3000/restaurants')
+        fetch('http://10.0.3.2:3000/restaurants')
             .then(response => response.json())
             .then(result => this.setState({restaurants: result}))
     }
