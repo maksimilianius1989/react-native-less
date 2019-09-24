@@ -16,9 +16,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('http://10.0.3.2:3000/restaurants')
-            .then(response => response.json())
-            .then(result => this.setState({restaurants: result}))
+        axios.get('http://10.0.3.2:3000/restaurants')
+            .then(result => this.setState({restaurants: result.data}))
     }
 
     render() {
