@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import {
-    View,
-    StyleSheet,
-    TextInput,
-    FlatList,
-    Image
-} from 'react-native';
 import axios from "axios"
 import {FlatList, Image, StyleSheet, TextInput, View} from "react-native"
 import RestaurantRow from 'components/RestaurantRow'
+import PizzaImage from 'images/star.png'
+import Header from 'components/Header'
 
 export default class RestaurantList extends Component {
     state = {
