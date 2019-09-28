@@ -6,6 +6,10 @@ import PizzaImage from 'images/star.png'
 import Header from 'components/Header'
 
 export default class RestaurantList extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     state = {
         search: null,
         restaurants: []
@@ -19,7 +23,8 @@ export default class RestaurantList extends Component {
     render() {
         return (
             <View style={{
-                flex: 1
+                flex: 1,
+                backgroundColor: '#ffffff'
             }}>
 
                 <View style={{
