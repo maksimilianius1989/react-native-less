@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
+import {createBottomTabNavigator} from 'react-navigation'
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 
-export default createStackNavigator({
+const List = createStackNavigator({
     Home: {screen: RestaurantList},
     Info: {screen: RestaurantInfo}
 }, {
@@ -17,4 +18,8 @@ export default createStackNavigator({
             color: '#FFF',
         }
     }
+})
+
+export default createBottomTabNavigator({
+    List: {screen: List}
 })
