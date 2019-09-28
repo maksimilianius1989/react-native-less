@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 import About from 'components/About'
+import AddReview from 'components/AddReview'
 
 const List = createStackNavigator({
     Home: {screen: RestaurantList},
@@ -24,7 +25,7 @@ const List = createStackNavigator({
     }
 })
 
-export default createBottomTabNavigator({
+const Tabs = createBottomTabNavigator({
     List: {screen: List},
     About: {screen: About}
 }, {
@@ -48,3 +49,15 @@ export default createBottomTabNavigator({
         }
     }
 })
+
+export default createStackNavigator({
+    Tabs: {screen: Tabs},
+    AddReview: {screen: AddReview}
+}, {
+    mode: 'modal',
+    headerMode: 'none',
+    navigationOptions: {
+        gesturesEnabled: false
+    }
+})
+
