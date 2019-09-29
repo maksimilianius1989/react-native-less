@@ -40,9 +40,9 @@ export default class AddReview extends Component {
         //     AsyncStorage.setItem("reviewer_name", this.state.name)
         // }
 
-        AsyncStorage.removeItem("reviewer_name")
+        // AsyncStorage.removeItem("reviewer_name")
 
-        fetch('http://10.0.3.2:3000/review', {
+        fetch('http://192.168.0.104/review.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     name: this.state.name,

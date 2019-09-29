@@ -26,7 +26,7 @@ export default class RestaurantInfo extends Component {
                <View style={styles.infoHeader}>
                     <Image
                         source={{
-                            uri: `http://10.0.3.2:3000/images/${place.image}`
+                            uri: `http://192.168.0.104/shapes/${place.image}`
                         }}
                         style={styles.image}
                         resizeMode="contain"
