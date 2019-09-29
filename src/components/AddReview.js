@@ -4,7 +4,8 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    TextInput
+    TextInput,
+    ActivityIndicator
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view"
@@ -13,11 +14,34 @@ export default class AddReview extends Component {
     state = {
         name: '',
         rating: 0,
-        comment: ''
+        comment: '',
+        submitting: false
     }
 
     close = () => {
         this.props.navigation.goBack()
+    }
+
+    submitReview = () => {
+        this.setState({submitting: true})
+
+        fetch('http://10.0.3.2:3000/review', {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: this.state.name,
+                    rating: this.state.rating,
+                    comment: this.state.comment
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                this.setState({submitting: false}, () => {
+                    this.props.navigation.goBack()
+                })
+            })
+            .catch(error => {
+                this.setState({submitting: false})
+            })
     }
 
     render () {
@@ -25,60 +49,73 @@ export default class AddReview extends Component {
             <KeyboardAwareScrollView
                 style={{
                     flex: 1,
-                    backgroundColor: '#FFF'
+                    backgroundColor: '#fff'
                 }}
             >
+                <View style={styles.root}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={this.close}
+                    >
+                        <Icon name="close" size={30} color="#0066CC" />
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.close}
-                >
-                    <Icon name="close" size={30} color="#0066CC" />
-                </TouchableOpacity>
+                    <Text style={styles.addReview}>Add Review</Text>
 
-                <Text style={styles.addReview}>Add Review</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Name (optional)"
+                        value={this.state.name}
+                        onChangeText={name => this.setState({name})}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Name (optional)"
-                    value={this.state.name}
-                    onChangeText={name => this.setState({name})}
-                />
+                    <Text style={styles.rating}>Your Rating:</Text>
+                    <View style={styles.stars}>
+                        {
+                            [1, 2, 3, 4, 5].map(i => {
+                                return (
+                                    <TouchableOpacity
+                                        onPress={() => this.setState({rating: i})}
+                                        style={styles.starButton}
+                                        key={i}
+                                    >
+                                        <Icon
+                                            name={"star"}
+                                            color={this.state.rating >= i ? "#FFD64C" : "#CCC"}
+                                            size={40}
+                                        />
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+                    </View>
 
-                <Text style={styles.rating}>Your Rating:</Text>
-                <View style={styles.stars}>
+                    <TextInput
+                        style={[styles.input, {height: 100}]}
+                        placeholder="Review"
+                        value={this.state.review}
+                        onChangeText={review => this.setState({review})}
+                        multiline={true}
+                        numberOfLines={5}
+                    />
+
                     {
-                        [1, 2, 3, 4, 5].map(i => {
-                            return (
-                                <TouchableOpacity
-                                    onPress={() => this.setState({rating: i})}
-                                    style={styles.starButton}
-                                    key={i}
-                                >
-                                    <Icon
-                                        name={"star"}
-                                        color={this.state.rating >= i ? "#FFD64C" : "#CCC"}
-                                        size={40}
-                                    />
-                                </TouchableOpacity>
-                            )
-                        })
+                        this.state.submitting &&
+                        <ActivityIndicator
+                            size="large"
+                            color="#0066cc"
+                            style={{padding: 10}}
+                        />
                     }
+
+                    <TouchableOpacity
+                        style={styles.submitButton}
+                        onPress={this.submitReview}
+                        disabled={this.state.submitting}
+                    >
+                        <Text style={styles.submitButtonText}>Submit Review</Text>
+                    </TouchableOpacity>
                 </View>
-
-                <TextInput
-                    style={[styles.input, {height: 100}]}
-                    placeholder="Review"
-                    value={this.state.review}
-                    onChangeText={review => this.setState({review})}
-                    multiline={true}
-                    numberOfLines={5}
-                />
-
-                <TouchableOpacity style={styles.submitButton}>
-                    <Text style={styles.submitButtonText}>Submit Review</Text>
-                </TouchableOpacity>
-
             </KeyboardAwareScrollView>
         )
     }
