@@ -9,6 +9,7 @@ import SplashScreen from 'react-native-splash-screen'
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 import About from 'components/About'
+import Grid from 'components/Grid'
 import AddReview from 'components/AddReview'
 
 const List = createStackNavigator({
@@ -29,7 +30,8 @@ const List = createStackNavigator({
 
 const Tabs = createBottomTabNavigator({
     List: {screen: List},
-    About: {screen: About}
+    About: {screen: About},
+    Grid: {screen: Grid}
 }, {
     navigationOptions: ({navigation}) => {
         return {
