@@ -16,7 +16,8 @@ export default class RestaurantList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://192.168.0.104/restaurants.php')
+        // axios.get('http://192.168.0.104/restaurants.php')
+        axios.get('http://10.0.3.2:3000/restaurants')
             .then(result => this.setState({restaurants: result.data}))
     }
 
